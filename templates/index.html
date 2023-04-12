@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Театры Москвы</title>
+    {% load static %} <link rel="stylesheet" href={%  static 'styles.css' %}>
+    {% load static %} <script type="text/javascript" src={% static "js/script.js" %}></script>
+</head>
+    <h1 class="title">Главные театры Москвы</h1>
+    <ul class="catalog">
+    <div class="catalog-item"><li>
+        <form action="" method="post" enctype="multipart/form-data" class="form">
+        {% csrf_token %}
+        <label class="form-label">Показать</label>
+        <input name="text" type="text">
+        <label class="form-label">карточек</label>
+        <input type="submit" value="Применить" class="info_button">
+    </form>
+    </li>
+    </div>
+    {% for theatre in theatres %}
+        <div class="catalog-item"><li class="name">{{ theatre.name }}</li>
+        {% load static %}
+        <img class="image" src="{% static theatre.image_source %}" alt="My image" width="250px" height="200">
+        <button class="info_button" name ={{ theatre.url }}>Подробнее</button>
+        </div>
+    {% endfor %}
+</ul>
+<a class=form-label href="/admin/">Вход для администратора</a>
+<br>
+<br>
+</body>
+</html>

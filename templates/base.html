@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}{%  endblock %}</title>
+    {% load static %} <link rel="stylesheet" href={%  static 'styles.css' %}>
+</head>
+<body>
+    <h1 class="title">{% block theatre_name %}{% endblock %}</h1>
+    <div class="body-for-item"><img src="{% block image_source %}{% endblock %}" height="250" width="300">
+    <div class="text-block">{% block text %}{% endblock %}</div></div>
+    <form action="" method="post" enctype="multipart/form-data" class="form">
+        {% csrf_token %}
+        <input type="hidden" name='url' value={%  block theatre_url %}{% endblock %} >
+        <input type="submit" value="Удалить" class="info_button">
+        </form>
+<a class=form-label href="/">Назад</a>
+</body>
+</html>

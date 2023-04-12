@@ -1,0 +1,91 @@
+body {
+    background-color: rgba(74, 56, 255, 0.11);
+}
+.title {
+    font-size: 30pt;
+    font-color: rgb(82, 65, 255);
+    text-align: center;
+    font-weight: 700;
+}
+
+ul {
+    list-style: none;
+}
+
+.name {
+    font-size: 20pt;
+    font-color: rgba(74, 56, 255);
+    text-align: center;
+    font-weight: 500;
+}
+
+.info_button {
+    background-color: rgba(74, 56, 255, 0.5);
+    padding: 5px;
+    font-weight: 400;
+    font-color: rgba(74, 56, 255);
+    border-radius: 7px;
+}
+
+.delete_button {
+    background-color: rgba(74, 56, 255, 0.5);
+    padding: 5px;
+    font-weight: 400;
+    font-color: rgba(74, 56, 255);
+    border-radius: 7px;
+}
+
+.form-label {
+    font-size: 14pt;
+    font-color: rgba(74, 56, 255);
+    text-align: center;
+    font-weight: 300;
+}
+
+.body-for-item {
+    display: flex;
+}
+
+.text-block {
+    font-size: 14pt;
+    font-color: rgba(74, 56, 255);
+    text-align: center;
+    font-weight: 300;
+    margin: 20px;
+}
+
+.form {
+    width: 200px;
+    justify-content: center;
+    align-content: center;
+    display: flex;
+    flex-direction: column;
+}
+
+li {
+    padding: 0;
+    margin: 0;
+}
+
+.catalog {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 20px;
+}
+
+.catalog-item {
+    display: flex;
+    flex-direction: column;
+    margin: 0 auto;
+}
+
+.image {
+    border-radius: 10px;
+}
+
+.admin_link {
+    font-size: 14pt;
+    font-color: rgba(74, 56, 255);
+    text-align: center;
+    font-weight: 300;
+}

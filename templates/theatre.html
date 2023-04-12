@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ name }}{% endblock %}
+{% block theatre_name %}{{ name }}{% endblock %}
+{% load static %}
+{% block image_source %} {% static image_source %} {% endblock %}
+{% block theatre_url %}{{ url }}{% endblock %}
+
+{% block text %}{{ information }}{% endblock %}
