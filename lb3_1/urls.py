@@ -17,10 +17,27 @@ from django.contrib import admin
 
 from django.urls import path
 from lab_3 import views
+from drf_yasg.views import get_schema_view
+from drf_yasg import openapi
 
+schema_view = get_schema_view(
+    openapi.Info(
+        title="My Theatres API",
+        default_version='v333',
+        description="Welcome to the best lab in the world"
+    ))
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+
     path('', views.home, name = 'home'),
     path('theatre/<theatre_name>/', views.get_theatre),
+
+    path('api/', views.AllApiLinks.as_view()),
+    path('api/theatres/', views.TheatreViewSet.as_view({'get': 'list', 'post': 'create'})),
+    path('api/theatres/<id>', views.TheatreCount.as_view()),
+    path('api/perfomances/', views.PerfomanceViewSet.as_view({'get': 'list', 'post': 'create'})),
+    path('api/districts/', views.DistrictViewSet.as_view({'get': 'list', 'post': 'create'})),
+
+    path('doc/', schema_view.with_ui())
 ]

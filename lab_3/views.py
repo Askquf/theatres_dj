@@ -1,9 +1,10 @@
 from django.shortcuts import render
-from django.http import HttpResponse
-from django.template import RequestContext
-
-from lab_3.models import Theatre
+from rest_framework import viewsets
+from rest_framework.views import APIView
+from lab_3.serializer import TheatreSerializer, DistrictSerializer, PerfomanceSerializer
+from lab_3.models import Theatre, Perfomance, District
 from django.shortcuts import redirect
+from rest_framework.response import Response
 
 
 
@@ -34,4 +35,31 @@ def get_theatre(request, theatre_name):
         Theatre.objects.get(url = theatre_name).delete()
         return redirect(to='/')
 
+class TheatreViewSet(viewsets.ModelViewSet):
+    queryset = Theatre.objects.all().order_by('id')
+    serializer_class = TheatreSerializer
+
+    def get(self, request):
+        return Response(self.queryset.all())
+class TheatreCount(APIView):
+    def get(self, request, id):
+        return Response({'number of theatres in this district': Theatre.objects.filter(district = id).count()})
+
+class DistrictViewSet(viewsets.ModelViewSet):
+    queryset = District.objects.all().order_by('id')
+    serializer_class = DistrictSerializer
+
+    def get(self, request):
+        return Response(self.queryset.all())
+
+class PerfomanceViewSet(viewsets.ModelViewSet):
+    queryset = Perfomance.objects.all().order_by('id')
+    serializer_class = PerfomanceSerializer
+
+    def get(self, request):
+        return Response(self.queryset.all())
+
+class AllApiLinks(APIView):
+    def get(self, request):
+        return Response({'All theatres': 'theatres/', 'All districts': 'districts/', 'All perfomances': 'perfomances/', 'Theatres by districts id': 'theatres/<id>'})
 
