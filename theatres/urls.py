@@ -34,10 +34,10 @@ urlpatterns = [
     path('theatre/<theatre_name>/', views.get_theatre),
 
     path('api/', views.AllApiLinks.as_view()),
-    path('api/theatres/', views.TheatreViewSet.as_view({'get': 'list', 'post': 'create'})),
+    path('api/theatres/', views.TheatreViewSet.as_view({'get': 'list', 'post': 'create', 'delete': 'destroy'})),
     path('api/theatres/<id>', views.TheatreCount.as_view()),
-    path('api/perfomances/', views.PerfomanceViewSet.as_view({'get': 'list', 'post': 'create'})),
-    path('api/districts/', views.DistrictViewSet.as_view({'get': 'list', 'post': 'create'})),
+    path('api/perfomances/', views.PerfomanceViewSet.as_view({'get': 'list', 'post': 'create', 'delete': 'destroy'})),
+    path('api/districts/', views.DistrictViewSet.as_view({'get': 'list', 'post': 'create', 'delete': 'destroy'})),
 
     path('doc/', schema_view.with_ui())
 ]

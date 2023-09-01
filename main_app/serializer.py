@@ -14,4 +14,4 @@ class DistrictSerializer(serializers.ModelSerializer):
 class PerfomanceSerializer(serializers.ModelSerializer):
     class Meta:
         model = Perfomance
-        fields = ["name", "id", "theatre_id"]
+        fields = ["name", "information", "image_source", "id", "theatre_url"]

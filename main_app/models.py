@@ -21,9 +21,11 @@ class Theatre(models.Model):
         db_table = 'theatres'
 
 class Perfomance(models.Model):
-    name = models.CharField(max_length=20, verbose_name='Название постановки')
+    name = models.CharField(max_length=20)
+    information = models.CharField(max_length=200)
+    image_source = models.CharField(max_length=50)
     id = models.IntegerField(primary_key=True)
-    theatre = models.ForeignKey(Theatre, on_delete=models.CASCADE)
+    theatre_url = models.CharField(max_length=20)
 
     class Meta:
         managed = False

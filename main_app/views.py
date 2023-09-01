@@ -6,9 +6,7 @@ from lab_3.models import Theatre, Perfomance, District
 from django.shortcuts import redirect
 from rest_framework.response import Response
 
-
-
-#data = {
+# data = {
 #    'theatres':
 #        [
 #            {'path': 'mal', 'name': 'Малый театр', 'image_source': 'mal.jpg', 'information': 'Какая-то информация о малом театре'},
@@ -17,7 +15,7 @@ from rest_framework.response import Response
 #            {'path':'mht', 'name': 'МХТ им. А.П. Чехова', 'image_source': 'mht.jpg', 'information': 'Какая-то информация об МХТ'},
 #            {'path':'lenkom', 'name': 'Ленком', 'image_source': 'lenkom.jpg', 'information': 'Какая-то информация о Ленкоме'}
 #        ]
-#}
+# }
 
 def home(request):
     data_number = len(Theatre.objects.all())
@@ -25,41 +23,48 @@ def home(request):
                                        (not request.POST['text'].isdigit() or \
                                         0 >= int(request.POST['text']) \
                                         or int(request.POST['text']) >= data_number) else int(request.POST['text'])
-    return render(request, "index.html", {'theatres' : Theatre.objects.all().values()[0:number_of_records]})
+    return render(request, "index.html", {'theatres': Theatre.objects.all().values()[0:number_of_records]})
+
 
 def get_theatre(request, theatre_name):
     if 'url' not in request.POST:
         theatre = Theatre.objects.filter(url=theatre_name).values()
-        return render(request, "theatre.html", theatre[0]) if len(theatre) > 0 else redirect(to='/')#if len(theatre) > 0 else redirect(to='/')
+        return render(request, "theatre.html", theatre[0]) if len(theatre) > 0 else redirect(
+            to='/')  # if len(theatre) > 0 else redirect(to='/')
     else:
-        Theatre.objects.get(url = theatre_name).delete()
+        Theatre.objects.get(url=theatre_name).delete()
         return redirect(to='/')
+
 
 class TheatreViewSet(viewsets.ModelViewSet):
     queryset = Theatre.objects.all().order_by('id')
     serializer_class = TheatreSerializer
 
-    def get(self, request):
-        return Response(self.queryset.all())
+
 class TheatreCount(APIView):
     def get(self, request, id):
-        return Response({'number of theatres in this district': Theatre.objects.filter(district = id).count()})
+        return Response({'number of theatres in this district': Theatre.objects.filter(district=id).count()})
+
 
 class DistrictViewSet(viewsets.ModelViewSet):
     queryset = District.objects.all().order_by('id')
     serializer_class = DistrictSerializer
 
-    def get(self, request):
-        return Response(self.queryset.all())
+
 
 class PerfomanceViewSet(viewsets.ModelViewSet):
     queryset = Perfomance.objects.all().order_by('id')
     serializer_class = PerfomanceSerializer
 
-    def get(self, request):
-        return Response(self.queryset.all())
 
 class AllApiLinks(APIView):
     def get(self, request):
-        return Response({'All theatres': 'theatres/', 'All districts': 'districts/', 'All perfomances': 'perfomances/', 'Theatres by districts id': 'theatres/<id>'})
+        return Response({'All theatres': 'theatres/', 'All districts': 'districts/', 'All perfomances': 'perfomances/',
+                         'Theatres by districts id': 'theatres/<id>'})
 
+
+
+
+
+    #def get(self, request):
+    #    return Response(self.queryset.all())
