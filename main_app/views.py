@@ -1,8 +1,8 @@
 from django.shortcuts import render
 from rest_framework import viewsets
 from rest_framework.views import APIView
-from lab_3.serializer import TheatreSerializer, DistrictSerializer, PerfomanceSerializer
-from lab_3.models import Theatre, Perfomance, District
+from main_app.serializer import TheatreSerializer, DistrictSerializer, PerfomanceSerializer
+from main_app.models import Theatre, Perfomance, District
 from django.shortcuts import redirect
 from rest_framework.response import Response
 
@@ -62,9 +62,3 @@ class AllApiLinks(APIView):
         return Response({'All theatres': 'theatres/', 'All districts': 'districts/', 'All perfomances': 'perfomances/',
                          'Theatres by districts id': 'theatres/<id>'})
 
-
-
-
-
-    #def get(self, request):
-    #    return Response(self.queryset.all())

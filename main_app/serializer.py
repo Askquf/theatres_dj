@@ -1,4 +1,4 @@
-from lab_3.models import Theatre, District, Perfomance
+from main_app.models import Theatre, District, Perfomance
 from rest_framework import serializers
 
 class TheatreSerializer(serializers.ModelSerializer):

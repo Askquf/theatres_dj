@@ -1,4 +1,4 @@
-"""lb3_1 URL Configuration
+"""theatres URL Configuration
 
 The `urlpatterns` list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/3.2/topics/http/urls/
@@ -16,7 +16,7 @@ Including another URLconf
 from django.contrib import admin
 
 from django.urls import path
-from lab_3 import views
+from main_app import views
 from drf_yasg.views import get_schema_view
 from drf_yasg import openapi
 
